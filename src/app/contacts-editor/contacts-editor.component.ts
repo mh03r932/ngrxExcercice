@@ -38,7 +38,7 @@ export class ContactsEditorComponent implements OnInit {
 
     const query = getSelectedContact;
     this.contact$ = this.store.select(query).map(contact => ({...contact}));
-    // we MUST copy the object otherwise we would directrly mutate the store which would break the redux pattern
+    // we MUST copy the object otherwise we would directly mutate the store which would break the redux pattern
   }
 
   cancel(contact: Contact) {
