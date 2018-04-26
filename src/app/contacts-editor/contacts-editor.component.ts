@@ -39,6 +39,7 @@ export class ContactsEditorComponent implements OnInit {
         contact.id == id);
       return contact;
     }).map(contact => ({...contact}));
+    // we MUST copy the object otherwise we would directrly mutate the store which would break the redux pattern
   }
 
   cancel(contact: Contact) {

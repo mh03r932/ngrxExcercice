@@ -4,11 +4,13 @@ import {ContactsActions, ContactsActionTypes} from './contacts.actions';
 export interface ContactsState {
   list: Array<Contact>;
   selectedContactId: string;
+  loaded: boolean;
 }
 
 const INITIAL_STATE: ContactsState = {
   list: [],
-  selectedContactId: undefined,
+  selectedContactId: null,
+  loaded: false,
 };
 
 
@@ -28,7 +30,7 @@ export function contactsReducer(state: ContactsState = INITIAL_STATE, action: Co
     case ContactsActionTypes.UPDATE_CONTACT:
       const updatedList = state.list.map(contact => {
         return contact.id == action.payload.id
-          ? {...contact, ...action.payload}
+          ? {...contact, ...action.payload} // apply changes to contact using  spread in this case
           : contact;
       });
 

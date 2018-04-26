@@ -30,7 +30,7 @@ export class ContactsDetailComponent implements OnInit {
       const id = state.contacts.selectedContactId;
       const contact = state.contacts.list.find(contact =>
         contact.id == id);
-      return Object.assign({}, contact);
+      return contact;
     });
 
     // this.contactsService.getContact(this.route.snapshot.paramMap.get('id'))
