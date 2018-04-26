@@ -16,7 +16,7 @@ import getLoaded = ContactsQuery.getLoaded;
 @Injectable()
 export class ContactExistsGuard implements CanActivate {
 
-  constructor(private store: Store,
+  constructor(private store: Store<Contact>,
               private contactsService: ContactsService) {
   }
 

@@ -5,7 +5,7 @@ import {createSelector} from '@ngrx/store';
 
 export interface ContactsState {
   list: Array<Contact>;
-  selectedContactId: string;
+  selectedContactId: string | number;
   loaded: boolean;
 }
 
