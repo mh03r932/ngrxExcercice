@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Contact } from '../models/contact';
-import { ContactsService } from '../contacts.service';
+import {Component, OnInit} from '@angular/core';
+import {Observable} from 'rxjs/Observable';
+import {Contact} from '../models/contact';
+import {ContactsService} from '../contacts.service';
 import {LoadContactsSuccessAction} from '../state/contacts/contacts.actions';
 import {ApplicationState} from '../state/app.state';
 import {Store} from '@ngrx/store';
@@ -15,9 +15,10 @@ export class ContactsListComponent implements OnInit {
 
   contacts$: Observable<Array<Contact>>;
 
-  constructor(private contactsService: ContactsService,  private store: Store<ApplicationState> ) {}
+  constructor(private contactsService: ContactsService, private store: Store<ApplicationState>) {
+  }
 
-  ngOnInit () {
+  ngOnInit() {
 
     const query = (state) => state.contacts.list;
     this.contacts$ = this.store.select(query);
@@ -31,8 +32,6 @@ export class ContactsListComponent implements OnInit {
         );
       });
 
-    // let action = new LoadContactsSuccessAction(contacts);
-    // this.store.dispatch(action);
   }
 
   trackByContactId(index, contact) {

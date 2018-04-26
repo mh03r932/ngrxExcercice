@@ -2,7 +2,7 @@ import {Action} from '@ngrx/store';
 import {Contact} from '../../models/contact';
 
 export enum ContactsActionTypes {
-  LOAD_CONTACTS_SUCCESS = '[Contacts] Load success'
+  LOAD_CONTACTS_SUCCESS = '[Contacts] Load Contacts Success'
 
 }
 

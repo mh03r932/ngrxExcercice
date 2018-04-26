@@ -13,4 +13,4 @@
 - use INITIAL_STATE and assing a meaningfull initial state
 - root reducer needs to match shape of applicationState (i.e. properties)
 - select someting from the store using a query function, we get an observable back
--
+- recommendet to put state stuff of ng-rx into feature-modules
