@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ContactsService } from '../contacts.service';
-import { Contact } from '../models/contact';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {ContactsService} from '../contacts.service';
+import {Contact} from '../models/contact';
+import {ApplicationState} from '../state/app.state';
+import {Store} from '@ngrx/store';
 
 @Component({
   selector: 'trm-contacts-detail',
@@ -12,10 +14,13 @@ export class ContactsDetailComponent implements OnInit {
 
   contact: Contact;
 
-  constructor(private contactsService: ContactsService, private route: ActivatedRoute) {}
+  constructor(private contactsService: ContactsService,
+              private route: ActivatedRoute,
+              private store: Store<ApplicationState>) {
+  }
 
   ngOnInit() {
     this.contactsService.getContact(this.route.snapshot.paramMap.get('id'))
-                        .subscribe(contact => this.contact = contact);
+      .subscribe(contact => this.contact = contact);
   }
 }
