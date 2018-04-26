@@ -14,3 +14,20 @@
 - root reducer needs to match shape of applicationState (i.e. properties)
 - select someting from the store using a query function, we get an observable back
 - recommendet to put state stuff of ng-rx into feature-modules
+- why use guard if you could use resolver?
+-> semantics resolver should return resolved data, however in ngrx we just want to put it into the store
+
+Frage: wann setzt man ngRX ein?
+- Subfrage: Was gehört in den store?
+
+SHARI
+Shared state (authentication state)
+Hydrated (must be in same state after reloading)
+made Available across routes
+Retrieved
+Impacted (one piece of information is impacted by many components)
+
+
+link ngconf boilerplate talk,
+
+shari

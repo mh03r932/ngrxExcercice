@@ -36,6 +36,18 @@ export function contactsReducer(state: ContactsState = INITIAL_STATE, action: Co
 
       return {...state, list: updatedList};
 
+    case ContactsActionTypes.ADD_CONTACT:
+      const findInList = (found, contact) => {
+        return found || contact.id == action.payload.id;
+      };
+      const inStore = state.list.find(findInList);
+
+      return {
+        ...state,
+        list: !inStore ? [...state.list, action.payload] :
+          state.list
+      };
+
     default:
       return state; // ALWAYS return current state as a default
 

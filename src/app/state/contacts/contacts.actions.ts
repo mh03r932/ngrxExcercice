@@ -5,6 +5,7 @@ export enum ContactsActionTypes {
   LOAD_CONTACTS_SUCCESS = '[Contacts] Load Contacts Success',
   UPDATE_CONTACT = '[Contacts] Update contact',
   SELECT_CONTACT = '[Contacts] Select contact',
+  ADD_CONTACT = '[Contacts] Add contact',
 
 }
 
@@ -30,4 +31,10 @@ export class UpdateContactAction implements Action {
   }
 }
 
-export type ContactsActions = LoadContactsSuccessAction | SelectContactAction | UpdateContactAction;
+export class AddContactAction implements Action {
+  readonly type = ContactsActionTypes.ADD_CONTACT;
+
+  constructor(public payload: Contact) { }
+}
+
+export type ContactsActions = LoadContactsSuccessAction | SelectContactAction | UpdateContactAction | AddContactAction;
