@@ -19,14 +19,14 @@ export class LoadContactsSuccessAction implements Action {
 
 export class SelectContactAction implements Action {
   readonly type = ContactsActionTypes.SELECT_CONTACT;
-  constructor(public payload: string) {
+  constructor(public payload:  number) {
   }
 
 }
 
 export class UpdateContactAction implements Action {
   readonly type = ContactsActionTypes.UPDATE_CONTACT;
-  constructor(public payload: {id: string | number}) {
+  constructor(public payload: Contact) {
   }
 }
 

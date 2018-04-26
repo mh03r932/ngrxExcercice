@@ -8,7 +8,7 @@ export interface ContactsState {
 
 const INITIAL_STATE: ContactsState = {
   list: [],
-  selectedContactId: ''
+  selectedContactId: undefined,
 };
 
 

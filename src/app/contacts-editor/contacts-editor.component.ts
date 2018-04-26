@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Contact } from '../models/contact';
-import { ContactsService } from '../contacts.service';
+import {Component, OnInit} from '@angular/core';
+import {Router, ActivatedRoute} from '@angular/router';
+import {Contact} from '../models/contact';
+import {ContactsService} from '../contacts.service';
 import {Observable} from 'rxjs/Observable';
 import {ApplicationState} from '../state/app.state';
 import {Store} from '@ngrx/store';
-import {SelectContactAction} from '../state/contacts/contacts.actions';
+import {SelectContactAction, UpdateContactAction} from '../state/contacts/contacts.actions';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'trm-contacts-editor',
@@ -21,7 +22,8 @@ export class ContactsEditorComponent implements OnInit {
   constructor(private contactsService: ContactsService,
               private router: Router,
               private route: ActivatedRoute,
-              private store: Store<ApplicationState>) {}
+              private store: Store<ApplicationState>) {
+  }
 
   ngOnInit() {
     // this.contactsService.getContact(this.route.snapshot.paramMap.get('id'))
@@ -35,8 +37,8 @@ export class ContactsEditorComponent implements OnInit {
       const id = state.contacts.selectedContactId;
       const contact = state.contacts.list.find(contact =>
         contact.id == id);
-      return Object.assign({}, contact);
-    });
+      return contact;
+    }).map(contact => ({...contact}));
   }
 
   cancel(contact: Contact) {
@@ -44,12 +46,17 @@ export class ContactsEditorComponent implements OnInit {
   }
 
   save(contact: Contact) {
-   this.contactsService.updateContact(contact)
-                       .subscribe(() => this.goToDetails(contact));
+    this.contactsService.updateContact(contact)
+      .subscribe(() => {
+        this.store.dispatch(new UpdateContactAction(contact));
+        this.goToDetails(contact);
+      });
+
+
   }
 
   private goToDetails(contact: Contact) {
-    this.router.navigate(['/contact', contact.id ]);
+    this.router.navigate(['/contact', contact.id]);
   }
 }
 
