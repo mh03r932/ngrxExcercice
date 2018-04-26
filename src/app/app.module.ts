@@ -1,25 +1,30 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NgModule} from '@angular/core';
+import {FlexLayoutModule} from '@angular/flex-layout';
+import {RouterModule} from '@angular/router';
+import {HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
 
-import { ContactsMaterialModule } from './contacts-material.module';
+import {ContactsMaterialModule} from './contacts-material.module';
 
-import { ContactsAppComponent } from './app.component';
-import { ContactsListComponent } from './contacts-list/contacts-list.component';
-import { ContactsDetailComponent } from './contacts-detail/contacts-detail.component';
-import { ContactsEditorComponent } from './contacts-editor/contacts-editor.component';
+import {ContactsAppComponent} from './app.component';
+import {ContactsListComponent} from './contacts-list/contacts-list.component';
+import {ContactsDetailComponent} from './contacts-detail/contacts-detail.component';
+import {ContactsEditorComponent} from './contacts-editor/contacts-editor.component';
 
-import { ContactsService } from './contacts.service';
+import {ContactsService} from './contacts.service';
 
-import { APP_ROUTES } from './app.routes';
-import { API_ENDPOINT } from './app.tokens';
-import {StoreModule} from '@ngrx/store';
+import {APP_ROUTES} from './app.routes';
+import {API_ENDPOINT} from './app.tokens';
+import { StoreModule} from '@ngrx/store';
 import {ROOT_REDUCER} from './state/app.state';
 import {ContactExistsGuard} from './contact-exists.guard';
+
+import {MY_META_REDUCERS} from './shared';
+import {environment} from '../environments/environment';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+
 
 
 @NgModule({
@@ -37,12 +42,15 @@ import {ContactExistsGuard} from './contact-exists.guard';
     RouterModule.forRoot(APP_ROUTES),
     HttpClientModule,
     FormsModule,
-    StoreModule.forRoot(ROOT_REDUCER) // would do this with forFeature if lazy loading and if we have multiple reducers
+    StoreModule.forRoot(ROOT_REDUCER, {
+      metaReducers: MY_META_REDUCERS
+    }), // would do this with forFeature if lazy loading and if we have multiple reducers
+    !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 5 }) : [],
   ],
   providers: [
     ContactsService,
     ContactExistsGuard,
-    { provide: API_ENDPOINT, useValue: 'http://localhost:4201/api' }
+    {provide: API_ENDPOINT, useValue: 'http://localhost:4201/api'}
   ],
   bootstrap: [ContactsAppComponent]
 })
