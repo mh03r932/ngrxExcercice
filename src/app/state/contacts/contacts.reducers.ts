@@ -15,10 +15,11 @@ export function contactsReducer(state: ContactsState = INITIAL_STATE, action: Co
   switch (action.type) {
     case ContactsActionTypes.LOAD_CONTACTS_SUCCESS:
       return {
-        ...state,
-        list: state.list.concat(action.payload)} ;
+        ...state, // spread operator to shallow copy
+        list: action.payload
+      } ;
     default:
-        return state;
+        return state; // ALWAYS return current state as a default
 
   }
 }
