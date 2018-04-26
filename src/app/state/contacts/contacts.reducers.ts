@@ -14,7 +14,9 @@ export function contactsReducer(state: ContactsState = INITIAL_STATE, action: Co
 
   switch (action.type) {
     case ContactsActionTypes.LOAD_CONTACTS_SUCCESS:
-      return {list: state.list.concat(action.payload)} ;
+      return {
+        ...state,
+        list: state.list.concat(action.payload)} ;
     default:
         return state;
 
