@@ -22,6 +22,7 @@ export function contactsReducer(state: ContactsState = INITIAL_STATE, action: Co
     case ContactsActionTypes.LOAD_CONTACTS_SUCCESS:
       return {
         ...state, // spread operator to shallow copy
+        loaded: true,
         list: action.payload
       };
     case ContactsActionTypes.SELECT_CONTACT:

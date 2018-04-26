@@ -27,7 +27,6 @@ export class ContactExistsGuard implements CanActivate {
 
 
     const resolveOrAddContactToList = (loaded: boolean) => {
-      console.log('resolver is triggerd');
       const addContactToList = (contact: Contact) => {
         this.store.dispatch(new AddContactAction(contact));
       };
