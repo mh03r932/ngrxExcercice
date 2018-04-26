@@ -58,6 +58,10 @@ export function contactsReducer(state: ContactsState = INITIAL_STATE, action: Co
 
 }
 
+/**
+ * Why Query(s)?
+ * If store is analogous to a database and reducers to tables, then selectas can be considered the queries into sais database
+ */
 export namespace ContactsQuery {
   export const getContacts = (appState: ApplicationState) => appState.contacts.list;
   export const getLoaded = (appState) => appState.contacts.loaded;
@@ -67,7 +71,7 @@ export namespace ContactsQuery {
     getSelectedContactId,
     (contacts, id) => {
       const contact = contacts.find(cntact => cntact.id == id);
-      return contact ? Object.assign({}, contact) : undefined;
+      return contact;
     }
   );
 }
