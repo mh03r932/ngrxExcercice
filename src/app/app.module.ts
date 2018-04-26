@@ -36,7 +36,7 @@ import {ROOT_REDUCER} from './state/app.state';
     RouterModule.forRoot(APP_ROUTES),
     HttpClientModule,
     FormsModule,
-    StoreModule.forRoot(ROOT_REDUCER)
+    StoreModule.forRoot(ROOT_REDUCER) // would do this with forFeature if lazy loading and if we have multiple reducers
   ],
   providers: [
     ContactsService,

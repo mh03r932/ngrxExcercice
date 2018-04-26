@@ -21,7 +21,7 @@ export class ContactsListComponent implements OnInit {
   ngOnInit() {
 
     const query = (state) => state.contacts.list;
-    this.contacts$ = this.store.select(query);
+    this.contacts$ = this.store.select(query); //select the disired slice of state
 
 
     this.contactsService
