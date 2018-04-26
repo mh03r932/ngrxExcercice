@@ -30,7 +30,7 @@ export function contactsReducer(state: ContactsState = INITIAL_STATE, action: Co
         ...state,
         selectedContactId: action.payload
       };
-    case ContactsActionTypes.UPDATE_CONTACT:
+    case ContactsActionTypes.UPDATE_CONTACT_SUCCESS:
       const updatedList = state.list.map(contact => {
         return contact.id == action.payload.id
           ? {...contact, ...action.payload} // apply changes to contact using  spread in this case

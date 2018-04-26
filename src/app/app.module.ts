@@ -25,6 +25,9 @@ import {MY_META_REDUCERS} from './shared';
 import {environment} from '../environments/environment';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 
+import { EffectsModule } from '@ngrx/effects';
+
+import { ContactsEffectsService } from './state/contacts-effects.service';
 
 
 @NgModule({
@@ -42,6 +45,9 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
     RouterModule.forRoot(APP_ROUTES),
     HttpClientModule,
     FormsModule,
+    EffectsModule.forRoot([
+      ContactsEffectsService
+    ]),
     StoreModule.forRoot(ROOT_REDUCER, {
       metaReducers: MY_META_REDUCERS
     }), // would do this with forFeature if lazy loading and if we have multiple reducers

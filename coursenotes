@@ -33,3 +33,6 @@ Impacted (one piece of information is impacted by many components)
 link ngconf boilerplate talk,
 
 
+error handling was not part of the talk. if there is an error in an effect you have to probably add an error action in the effect
+
+

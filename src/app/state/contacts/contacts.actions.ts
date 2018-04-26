@@ -6,6 +6,9 @@ export enum ContactsActionTypes {
   UPDATE_CONTACT = '[Contacts] Update contact',
   SELECT_CONTACT = '[Contacts] Select contact',
   ADD_CONTACT = '[Contacts] Add contact',
+  LOAD_CONTACTS = '[Contacts] Load All Contacts',
+  UPDATE_CONTACT_SUCCESS = '[Contacts] update contact sucess',
+
 
 }
 
@@ -20,13 +23,15 @@ export class LoadContactsSuccessAction implements Action {
 
 export class SelectContactAction implements Action {
   readonly type = ContactsActionTypes.SELECT_CONTACT;
-  constructor(public payload:  number) {
+
+  constructor(public payload: number) {
   }
 
 }
 
 export class UpdateContactAction implements Action {
   readonly type = ContactsActionTypes.UPDATE_CONTACT;
+
   constructor(public payload: Contact) {
   }
 }
@@ -34,7 +39,23 @@ export class UpdateContactAction implements Action {
 export class AddContactAction implements Action {
   readonly type = ContactsActionTypes.ADD_CONTACT;
 
-  constructor(public payload: Contact) { }
+  constructor(public payload: Contact) {
+  }
 }
 
-export type ContactsActions = LoadContactsSuccessAction | SelectContactAction | UpdateContactAction | AddContactAction;
+export class LoadContactsAction implements Action {
+  readonly type = ContactsActionTypes.LOAD_CONTACTS;
+
+  constructor() {
+  }
+}
+
+export class UpdateContactSuccessAction implements Action {
+  readonly type = ContactsActionTypes.UPDATE_CONTACT_SUCCESS;
+
+  constructor(public payload: Contact) {
+  }
+}
+
+export type ContactsActions = LoadContactsSuccessAction | SelectContactAction | UpdateContactAction | AddContactAction
+  | LoadContactsAction | UpdateContactSuccessAction;
