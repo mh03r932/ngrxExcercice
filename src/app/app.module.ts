@@ -17,6 +17,9 @@ import { ContactsService } from './contacts.service';
 
 import { APP_ROUTES } from './app.routes';
 import { API_ENDPOINT } from './app.tokens';
+import {StoreModule} from '@ngrx/store';
+import {ROOT_REDUCER} from './state/app.state';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +35,8 @@ import { API_ENDPOINT } from './app.tokens';
     FlexLayoutModule,
     RouterModule.forRoot(APP_ROUTES),
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    StoreModule.forRoot(ROOT_REDUCER)
   ],
   providers: [
     ContactsService,
