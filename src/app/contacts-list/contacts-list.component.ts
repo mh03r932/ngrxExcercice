@@ -5,6 +5,8 @@ import {ContactsService} from '../contacts.service';
 import {LoadContactsSuccessAction} from '../state/contacts/contacts.actions';
 import {ApplicationState} from '../state/app.state';
 import {Store} from '@ngrx/store';
+import {ContactsQuery} from '../state/contacts/contacts.reducers';
+import getContacts = ContactsQuery.getContacts;
 
 @Component({
   selector: 'trm-contacts-list',
@@ -20,7 +22,7 @@ export class ContactsListComponent implements OnInit {
 
   ngOnInit() {
 
-    const query = (state) => state.contacts.list;
+    const query = getContacts;
     this.contacts$ = this.store.select(query); // select the disired slice of state
 
 

@@ -10,6 +10,8 @@ import 'rxjs/add/operator/do';
 
 
 import {of} from 'rxjs/observable/of';
+import {ContactsQuery} from './state/contacts/contacts.reducers';
+import getLoaded = ContactsQuery.getLoaded;
 
 @Injectable()
 export class ContactExistsGuard implements CanActivate {
@@ -38,7 +40,8 @@ export class ContactExistsGuard implements CanActivate {
     };
 
     // we want to check if the contacts are loaded
-    return this.store.select(state => state.contacts.loaded)
+    const query =  getLoaded;
+    return this.store.select(query)
       .take(1)
       .switchMap(resolveOrAddContactToList);
 

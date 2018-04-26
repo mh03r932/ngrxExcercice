@@ -6,6 +6,8 @@ import {ApplicationState} from '../state/app.state';
 import {Store} from '@ngrx/store';
 import {SelectContactAction} from '../state/contacts/contacts.actions';
 import {Observable} from 'rxjs/Observable';
+import {ContactsQuery} from '../state/contacts/contacts.reducers';
+import getSelectedContact = ContactsQuery.getSelectedContact;
 
 @Component({
   selector: 'trm-contacts-detail',
@@ -23,15 +25,12 @@ export class ContactsDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    const contactId = this.route.snapshot.paramMap.get('id');
-    this.store.dispatch(new SelectContactAction(+contactId));
+    // can skip selection
+    // const contactId = this.route.snapshot.paramMap.get('id');
+    // this.store.dispatch(new SelectContactAction(+contactId));
 
-    this.contact$ = this.store.select(state => {
-      const id = state.contacts.selectedContactId;
-      const contact = state.contacts.list.find(contact =>
-        contact.id == id);
-      return contact;
-    });
+    const query = getSelectedContact;
+    this.contact$ = this.store.select(query);
 
     // this.contactsService.getContact(this.route.snapshot.paramMap.get('id'))
     //   .subscribe(contact => this.contact = contact);

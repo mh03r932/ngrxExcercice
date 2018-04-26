@@ -7,6 +7,8 @@ import {ApplicationState} from '../state/app.state';
 import {Store} from '@ngrx/store';
 import {SelectContactAction, UpdateContactAction} from '../state/contacts/contacts.actions';
 import 'rxjs/add/operator/map';
+import {ContactsQuery} from '../state/contacts/contacts.reducers';
+import getSelectedContact = ContactsQuery.getSelectedContact;
 
 @Component({
   selector: 'trm-contacts-editor',
@@ -30,15 +32,12 @@ export class ContactsEditorComponent implements OnInit {
     //                     .subscribe(contact => this.contact = contact);
     // this.store.select.pipe(map(contact => ({...contact}))
 
-    const contactId = this.route.snapshot.paramMap.get('id');
-    this.store.dispatch(new SelectContactAction(+contactId));
+    // const contactId = this.route.snapshot.paramMap.get('id');
+    // can skip selection, is done in guard
+   // this.store.dispatch(new SelectContactAction(+contactId));
 
-    this.contact$ = this.store.select(state => {
-      const id = state.contacts.selectedContactId;
-      const contact = state.contacts.list.find(contact =>
-        contact.id == id);
-      return contact;
-    }).map(contact => ({...contact}));
+    const query = getSelectedContact;
+    this.contact$ = this.store.select(query).map(contact => ({...contact}));
     // we MUST copy the object otherwise we would directrly mutate the store which would break the redux pattern
   }
 
