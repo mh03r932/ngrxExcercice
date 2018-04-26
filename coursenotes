@@ -1,0 +1,10 @@
+- dumb / smart componentes
+- sharing through @input is a problem because cant share state in siblings only in children
+- having state in service is fine but its hard to reason about updating state because multiple componentes can change state
+
+- we will have multiple reducers, actions flow into all reducers, they decide if they want to do something, if not they return the current state unchanged
+- if state has to change the state is recreated as a new object, this makes change detection easy since it can be done with reference checking
+- this means state is cloned using the spread operator.
+- if an array changes we have to use concat
+- have to be carefull not to update state by accident
+- reducer functions are pure (no sideeffect) which makes them very testable
