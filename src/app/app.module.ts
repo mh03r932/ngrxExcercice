@@ -45,7 +45,7 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
     StoreModule.forRoot(ROOT_REDUCER, {
       metaReducers: MY_META_REDUCERS
     }), // would do this with forFeature if lazy loading and if we have multiple reducers
-    !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 5 }) : [],
+    !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 5 }) : [], // keep last 5 actions for debugging
   ],
   providers: [
     ContactsService,
