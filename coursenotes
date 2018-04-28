@@ -34,5 +34,6 @@ link ngconf boilerplate talk,
 
 
 error handling was not part of the talk. if there is an error in an effect you have to probably add an error action in the effect
+mir gefällt laden mit effects nicht, ie kann nicht in der component routen oder etwas auf der view anzeigen wenn ein fehler passiert
 
 

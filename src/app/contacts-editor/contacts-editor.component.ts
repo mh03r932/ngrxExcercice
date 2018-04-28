@@ -46,11 +46,12 @@ export class ContactsEditorComponent implements OnInit {
   }
 
   save(contact: Contact) {
-    this.contactsService.updateContact(contact)
-      .subscribe(() => {
-        this.store.dispatch(new UpdateContactAction(contact));
-        this.goToDetails(contact);
-      });
+    this.store.dispatch(new UpdateContactAction(contact));
+    // this.contactsService.updateContact(contact)
+    //   .subscribe(() => {
+    //     this.store.dispatch(new UpdateContactAction(contact));
+    //     this.goToDetails(contact);
+    //   });
 
 
   }
